@@ -46,7 +46,11 @@ LOCAL_C_INCLUDES += \
         $(LOCAL_PATH)/include \
         external/bluetooth/bluedroid/hci/include \
         system/bt/hci/include \
-        $(TARGET_OUT_HEADERS)/bt/hci_qcomm_init
+        $(TARGET_OUT_HEADERS)/bt/hci_qcomm_init \
+        $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr/include
+
+LOCAL_ADDITIONAL_DEPENDENCIES += \
+$(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr
 
 ifeq ($(BOARD_HAS_QCA_BT_AR3002), true)
 LOCAL_C_FLAGS := \
@@ -62,7 +66,6 @@ LOCAL_SHARED_LIBRARIES := \
         liblog
 
 LOCAL_HEADER_LIBRARIES := \
-        generated_kernel_headers \
         libutils_headers
 
 LOCAL_MODULE := libbt-vendor
